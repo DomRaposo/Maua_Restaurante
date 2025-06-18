@@ -13,4 +13,31 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
+    public function getAllUsers()
+    {
+        return $this->userRepository->All();
+    }
+
+    public function getUser($id)
+    {
+        return $this->userRepository->find($id);
+    }
+
+    public function createUser(array $data)
+    {
+        $data['password'] = Hash::make($data['password']);
+    }
+
+    public function updateUser($id, array $data)
+    {
+        return $this->userRepository->update($id, $data);
+    }
+
+    public function deleteUser($id)
+    {
+        return $this->userRepository->delete($id);
+    }
+
 }
+
+
