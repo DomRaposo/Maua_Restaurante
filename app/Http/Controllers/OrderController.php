@@ -20,5 +20,16 @@ class OrderController extends Controller
 
         return response()->json($order, 201);
     }
+
+    public function finalize()
+    {
+        $result = $this->service->finalizeFromCart();
+
+        if (isset($result['error'])) {
+            return response()->json($result, 400);
+        }
+
+        return response()->json($result);
+    }
 }
 
